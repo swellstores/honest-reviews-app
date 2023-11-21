@@ -1,0 +1,224 @@
+{
+  "label": "Reviews",
+  "public": true,
+  "public_permissions": {
+    "query": {
+      "sort": "score desc",
+      "where": {
+        "status": "approved"
+      }
+    },
+    "expands": {
+      "product": {
+        "url": "/products/{product_id}"
+      }
+    }
+  },
+  "fields": {
+    "account_id": {
+      "type": "objectid",
+      "required": true
+    },
+    "account": {
+      "type": "link",
+      "model": "accounts",
+      "key": "account_id"
+    },
+    "product_id": {
+      "type": "objectid",
+      "required": true
+    },
+    "product": {
+      "type": "link",
+      "model": "products",
+      "key": "product_id"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "string",
+      "required": true
+    },
+    "images": {
+      "type": "array",
+      "value_type": "file"
+    },
+    "rating": {
+      "type": "int",
+      "min": 1,
+      "max": 5,
+      "required": true
+    },
+    "like_count": {
+      "type": "int",
+      "default": 0
+    },
+    "dislike_count": {
+      "type": "int",
+      "default": 0
+    },
+    "score": {
+      "type": "int",
+      "formula": "like_count - dislike_count"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["submitted", "approved", "rejected"],
+      "default": "submitted"
+    },
+    "rejected_reason": {
+      "type": "string"
+    },
+    "rewarded": {
+      "type": "bool",
+      "default": false,
+      "private": true
+    },
+    "reward_amount": {
+      "type": "currency",
+      "localized": true,
+      "private": true
+    },
+    "reward_disabled": {
+      "type": "bool",
+      "private": true
+    },
+    "verified_buyer": {
+      "type": "bool",
+      "default": false
+    },
+    "featured": {
+      "type": "bool",
+      "default": false
+    },
+    "comments": {
+      "type": "collection",
+      "public_permissions": {
+        "query": {
+          "sort": "score desc",
+          "where": {
+            "status": "approved"
+          }
+        }
+      },
+      "fields": {
+        "account_id": {
+          "type": "objectid",
+          "required": true
+        },
+        "account": {
+          "type": "link",
+          "model": "accounts",
+          "key": "account_id"
+        },
+        "body": {
+          "type": "string",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "enum": ["submitted", "approved", "rejected"],
+          "default": "submitted"
+        },
+        "like_count": {
+          "type": "int",
+          "default": 0
+        },
+        "dislike_count": {
+          "type": "int",
+          "default": 0
+        },
+        "score": {
+          "type": "int",
+          "formula": "like_count - dislike_count"
+        },
+        "verified_buyer": {
+          "type": "bool",
+          "default": false
+        }
+      },
+      "events": {
+        "types": [
+          {
+            "id": "created"
+          },
+          {
+            "id": "updated"
+          },
+          {
+            "id": "deleted"
+          },
+          {
+            "id": "submitted",
+            "conditions": {
+              "$formula": "and($record.status != 'submitted', status == 'submitted')"
+            }
+          },
+          {
+            "id": "approved",
+            "conditions": {
+              "$formula": "and($record.status != 'approved', status == 'approved')"
+            }
+          },
+          {
+            "id": "rejected",
+            "conditions": {
+              "$formula": "and($record.status != 'rejected', status == 'rejected')"
+            }
+          }
+        ]
+      }
+    },
+    "reactions": {
+      "type": "collection",
+      "public": true,
+      "fields": {
+        "account_id": {
+          "type": "objectid",
+          "required": true,
+          "unique": "parent_id"
+        },
+        "liked": {
+          "type": "bool",
+          "required": true
+        },
+        "comment_id": {
+          "type": "objectid"
+        }
+      }
+    }
+  },
+  "events": {
+    "types": [
+      {
+        "id": "created"
+      },
+      {
+        "id": "updated"
+      },
+      {
+        "id": "deleted"
+      },
+      {
+        "id": "submitted",
+        "conditions": {
+          "$formula": "and($record.status != 'submitted', status == 'submitted')"
+        }
+      },
+      {
+        "id": "approved",
+        "conditions": {
+          "$formula": "and($record.status != 'approved', status == 'approved')"
+        }
+      },
+      {
+        "id": "rejected",
+        "conditions": {
+          "$formula": "and($record.status != 'rejected', status == 'rejected')"
+        }
+      }
+    ]
+  }
+}

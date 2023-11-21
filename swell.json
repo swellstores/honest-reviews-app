@@ -1,0 +1,13 @@
+{
+	"id": "honest_reviews",
+	"version": "1.0.6",
+	"name": "Honest Reviews",
+	"description": "Honest reviews from honest people",
+	"type": "admin",
+	"permissions": [
+		"write_products",
+		"read_orders",
+		"write_accounts",
+		"public"
+	]
+}

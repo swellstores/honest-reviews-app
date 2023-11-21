@@ -1,0 +1,33 @@
+{
+  "collection": "reviews",
+  "label": "Review rejected",
+  "subject": "Your review of {{ product.name }} was not approved",
+  "description": "Notify customer when a review is rejected",
+  "method": "email",
+  "contact": "account.email",
+  "event": "rejected",
+  "query": {
+    "expand": ["account", "product"]
+  },
+  "repeat": true,
+  "sample": {
+    "rating": 5,
+    "account": {
+      "name": "Jane Doe",
+      "first_name": "Jane",
+      "last_name": "Doe"
+    },
+    "rejected_reason": "Your review is not relevant to this product.",
+    "product": {
+      "name": "Product One",
+      "images": [
+        {
+          "file": {
+            "url": "https://cdn.schema.io/default-theme/5f63e175e7eed80c11766c83/886a77f13bc9e09396f7a378edb170af"
+          }
+        }
+      ]
+    },
+    "product_url": "https://example.com/products/product-one"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "label": "Profile photos",
+  "description": "Allow users to display photos on their reviewer profile",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": true,
+      "public": true
+    }
+  ]
+}

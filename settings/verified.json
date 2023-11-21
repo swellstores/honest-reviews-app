@@ -1,0 +1,13 @@
+{
+  "label": "Verified buyers",
+  "description": "Display when a reviwer has purchased the product they are reviewing or commenting on",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": true,
+      "public": true
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "collection": "reviews",
+  "fields": [
+    {
+      "id": "account",
+      "label": "Reviewer",
+      "type": "customer_lookup",
+      "description": "The customer who wrote the review",
+      "required": true
+    },
+    {
+      "id": "product",
+      "label": "Product",
+      "type": "product_lookup",
+      "description": "The product being reviewed",
+      "required": true
+    },
+    {
+      "id": "title",
+      "label": "Review title",
+      "type": "text",
+      "description": "The title of the review",
+      "required": true
+    },
+    {
+      "id": "body",
+      "label": "Review body",
+      "type": "long_text",
+      "description": "The body of the review",
+      "required": true
+    },
+    {
+      "id": "rating",
+      "label": "Rating",
+      "type": "slider",
+      "unit": "stars",
+      "min": 1,
+      "max": 5,
+      "description": "Rating (1-5) of the reviewed product",
+      "admin_span": 1,
+      "required": true
+    },
+    {
+      "id": "images",
+      "label": "Images",
+      "type": "image",
+      "description": "Images associated with the review",
+      "multi": true,
+      "conditions": {
+        "$settings.images.enabled": true
+      }
+    },
+    {
+      "id": "status",
+      "label": "Status",
+      "type": "select",
+      "description": "Admin status of the review",
+      "default": "submitted",
+      "admin_span": 2,
+      "options": [
+        {
+          "label": "Submitted",
+          "value": "submitted"
+        },
+        {
+          "label": "Approved",
+          "value": "approved"
+        },
+        {
+          "label": "Rejected",
+          "value": "rejected"
+        }
+      ]
+    },
+    {
+      "id": "rejected_reason",
+      "label": "Rejected reason",
+      "type": "long_text",
+      "description": "Reason for rejecting the review, may be visible to the customer",
+      "conditions": {
+        "status": "rejected"
+      }
+    },
+    {
+      "id": "reward_amount",
+      "label": "Reward amount",
+      "type": "currency",
+      "description": "Amount to reward the customer for writing the review",
+      "admin_span": 1,
+      "conditions": {
+        "$settings.rewards.enabled": true,
+        "status": "approved",
+        "reward_disabled": { "$ne": true },
+        "rewarded": { "$ne": true }
+      }
+    },
+    {
+      "id": "reward_disabled",
+      "label": "Disable reward",
+      "type": "toggle",
+      "conditions": {
+        "$settings.rewards.enabled": true,
+        "status": "approved",
+        "rewarded": { "$ne": true }
+      }
+    },
+    {
+      "id": "verified_buyer",
+      "label": "Verified buyer",
+      "type": "toggle",
+      "description": "Indicates the reviewer has purchased the product",
+      "conditions": {
+        "$settings.verified.enabled": true
+      }
+    },
+    {
+      "id": "featured",
+      "label": "Featured",
+      "type": "toggle",
+      "description": "Indicates the review may be featured in your storefront",
+      "conditions": {
+        "$settings.featured.enabled": true
+      }
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "like_count",
+          "label": "Like count",
+          "type": "number",
+          "description": "Indicates the number of likes the review has received",
+          "readonly": true
+        },
+        {
+          "id": "dislike_count",
+          "label": "Dislike count",
+          "type": "number",
+          "description": "Indicates the number of dislikes the review has received",
+          "readonly": true
+        }
+      ]
+    },
+    {
+      "id": "comments",
+      "label": "Comments",
+      "type": "child_collection",
+      "fields": [
+        {
+          "id": "account",
+          "label": "Customer",
+          "type": "customer_lookup",
+          "description": "The customer who wrote the comment",
+          "required": true
+        },
+        {
+          "id": "body",
+          "label": "Comment body",
+          "type": "long_text",
+          "description": "The body of the comment",
+          "required": true
+        },
+        {
+          "id": "status",
+          "label": "Status",
+          "type": "select",
+          "description": "Admin status of the comment",
+          "default": "submitted",
+          "options": [
+            {
+              "label": "Submitted",
+              "value": "submitted"
+            },
+            {
+              "label": "Approved",
+              "value": "approved"
+            },
+            {
+              "label": "Rejected",
+              "value": "rejected"
+            }
+          ]
+        },
+        {
+          "id": "rejected_reason",
+          "label": "Rejected reason",
+          "type": "long_text",
+          "description": "Reason for rejecting the comment, may be visible to the customer",
+          "conditions": {
+            "status": "rejected"
+          }
+        },
+        {
+          "id": "verified_buyer",
+          "label": "Verified buyer",
+          "type": "toggle",
+          "description": "Indicates the user has purchased the product",
+          "conditions": {
+            "$settings.verified.enabled": true
+          }
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            {
+              "id": "like_count",
+              "label": "Like count",
+              "type": "number",
+              "description": "Indicates the number of likes the comment has received",
+              "readonly": true
+            },
+            {
+              "id": "dislike_count",
+              "label": "Dislike count",
+              "type": "number",
+              "description": "Indicates the number of dislikes the comment has received",
+              "readonly": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "list",
+      "nav": {
+        "parent": "products",
+        "label": "Honest Reviews"
+      },
+      "tabs": [
+        {
+          "id": "approved",
+          "label": "Approved",
+          "query": {
+            "status": "approved"
+          }
+        },
+        {
+          "id": "rejected",
+          "label": "Rejected",
+          "query": {
+            "status": "rejected"
+          }
+        },
+        {
+          "id": "verified",
+          "label": "Verified buyers",
+          "query": {
+            "verified_buyer": true
+          }
+        }
+      ],
+      "fields": [
+        {
+          "id": "title"
+        },
+        {
+          "id": "product"
+        },
+        {
+          "id": "body",
+          "truncated": 100
+        },
+        {
+          "id": "rating",
+          "template": "{{ rating }} {{ rating | default: 1 | pluralize: 'star','stars' }}"
+        },
+        {
+          "id": "account"
+        },
+        {
+          "id": "status"
+        },
+        {
+          "id": "comments"
+        },
+        {
+          "id": "date_created",
+          "label": "Submitted"
+        },
+        {
+          "id": "reward_amount",
+          "conditions": {
+            "$settings.rewards.enabled": true
+          }
+        },
+        {
+          "id": "verified_buyer",
+          "conditions": {
+            "$settings.verified.enabled": true
+          }
+        },
+        {
+          "id": "featured",
+          "conditions": {
+            "$settings.featured.enabled": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "new",
+      "fields": [
+        {
+          "type": "field_row",
+          "fields": [
+            {
+              "id": "account"
+            },
+            {
+              "id": "product"
+            }
+          ]
+        },
+        {
+          "id": "title"
+        },
+        {
+          "id": "body"
+        },
+        {
+          "id": "rating"
+        },
+        {
+          "id": "images"
+        },
+        {
+          "id": "status"
+        },
+        {
+          "id": "rejected_reason"
+        },
+        {
+          "id": "reward_amount"
+        },
+        {
+          "id": "reward_disabled"
+        },
+        {
+          "id": "verified_buyer"
+        },
+        {
+          "id": "featured"
+        },
+        {
+          "id": "comments"
+        }
+      ]
+    },
+    {
+      "id": "edit",
+      "title": "{{ title }}",
+      "subtitle": "By {{ account.name }}",
+      "fields": [
+        {
+          "type": "field_row",
+          "fields": [
+            {
+              "id": "account"
+            },
+            {
+              "id": "product"
+            }
+          ]
+        },
+        {
+          "id": "title"
+        },
+        {
+          "id": "body"
+        },
+        {
+          "id": "rating"
+        },
+        {
+          "id": "images"
+        },
+        {
+          "id": "status"
+        },
+        {
+          "id": "rejected_reason"
+        },
+        {
+          "id": "reward_amount"
+        },
+        {
+          "id": "rewarded_amount",
+          "readonly": true,
+          "type": "currency",
+          "default": "{{ reward_amount }}",
+          "conditions": {
+            "rewarded": true,
+            "reward_amount": { "$gt": 0 }
+          }
+        },
+        {
+          "id": "reward_disabled"
+        },
+        {
+          "id": "verified_buyer"
+        },
+        {
+          "id": "featured"
+        },
+        {
+          "id": "comments"
+        },
+        {
+          "type": "field_row",
+          "conditions": {
+            "$settings.reactions.enabled": true
+          },
+          "fields": [
+            {
+              "id": "like_count",
+              "admin_span": 1
+            },
+            {
+              "id": "dislike_count",
+              "admin_span": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

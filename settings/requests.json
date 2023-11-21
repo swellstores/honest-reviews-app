@@ -1,0 +1,39 @@
+{
+  "label": "Request for reviews",
+  "description": "Send requests for reviews after orders are placed",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": true,
+      "public": true
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "notify_after_order_days",
+          "label": "Days after purchase",
+          "type": "integer",
+          "description": "Number of days after a purchase before sending a review request",
+          "default": 7,
+          "admin_span": 1,
+          "conditions": {
+            "requests.enabled": true
+          }
+        },
+        {
+          "id": "storefront_url",
+          "label": "Storefront URL to submit reviews",
+          "type": "integer",
+          "description": "Optionally use a placeholder {{ product_id }} in the URL to link to the product review page",
+          "admin_span": 3,
+          "conditions": {
+            "requests.enabled": true
+          }
+        }
+      ]
+    }
+  ]
+}

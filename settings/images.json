@@ -1,0 +1,13 @@
+{
+  "label": "Review images",
+  "description": "Allow users to upload images along with reviews",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": true,
+      "public": true
+    }
+  ]
+}

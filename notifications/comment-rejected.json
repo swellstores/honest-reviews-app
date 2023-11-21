@@ -1,0 +1,37 @@
+{
+  "collection": "reviews:comments",
+  "label": "Comment rejected",
+  "subject": "Your comment on a review was not approved",
+  "description": "Notify customer when a comment is rejected",
+  "method": "email",
+  "contact": "account.email",
+  "event": "rejected",
+  "query": {
+    "expand": ["account", "parent.product"]
+  },
+  "repeat": true,
+  "sample": {
+    "rating": 5,
+    "account": {
+      "name": "Jane Doe",
+      "first_name": "Jane",
+      "last_name": "Doe"
+    },
+    "body": "My order was late",
+    "rejected_reason": "Your comment is not relevant to the review.",
+    "parent": {
+      "title": "Works like a charm",
+      "product": {
+        "name": "Product One",
+        "images": [
+          {
+            "file": {
+              "url": "https://cdn.schema.io/default-theme/5f63e175e7eed80c11766c83/886a77f13bc9e09396f7a378edb170af"
+            }
+          }
+        ]
+      }
+    },
+    "product_url": "https://example.com/products/product-one"
+  }
+}

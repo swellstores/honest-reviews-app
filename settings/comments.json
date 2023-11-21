@@ -1,0 +1,13 @@
+{
+  "label": "Review comments",
+  "description": "Allow users to comment on other customer reviews",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": true,
+      "public": true
+    }
+  ]
+}

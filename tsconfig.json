@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "webworker"],
+    "types": ["@swell/app-types"],
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}

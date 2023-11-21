@@ -1,0 +1,36 @@
+{
+  "label": "Reactions",
+  "description": "Allow users to react to reviews and comments with likes and dislikes",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": true,
+      "public": true
+    },
+    {
+      "id": "likes_only",
+      "label": "Likes only",
+      "type": "toggle",
+      "description": "Only show the option to Like a review or comment",
+      "default": false,
+      "public": true,
+      "conditions": {
+        "reactions.enabled": true
+      }
+    },
+    {
+      "id": "reviews_only",
+      "label": "Reviews only",
+      "type": "toggle",
+      "public": true,
+      "description": "Only enable reactions on reviews and disable them on comments",
+      "default": false,
+      "conditions": {
+        "reactions.enabled": true,
+        "comments.enabled": true
+      }
+    }
+  ]
+}

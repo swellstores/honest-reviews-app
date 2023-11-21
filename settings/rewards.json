@@ -1,0 +1,27 @@
+{
+  "label": "Rewards",
+  "description": "Give reviewers store credit for approved reviews",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "default_amount",
+          "label": "Default credit amount",
+          "type": "currency",
+          "description": "Default amount to grant to the customer for approved reviews. This can be changed on a per-review basis.",
+          "localized": true,
+          "conditions": {
+            "rewards.enabled": true
+          }
+        }
+      ]
+    }
+  ]
+}

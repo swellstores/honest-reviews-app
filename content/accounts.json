@@ -1,0 +1,171 @@
+{
+  "collection": "accounts",
+  "fields": [
+    {
+      "id": "name",
+      "label": "Display name",
+      "type": "text",
+      "description": "Name of the customer displayed with reviews",
+      "default": "{{ record.name }}",
+      "fallback": true,
+      "public": true
+    },
+    {
+      "id": "photo",
+      "label": "Photo",
+      "type": "image",
+      "description": "Photo of the customer displayed with reviews",
+      "conditions": {
+        "$settings.photo.enabled": true
+      },
+      "public": true
+    },
+    {
+      "id": "about",
+      "label": "About me",
+      "type": "long_text",
+      "description": "Reviewer bio displayed with reviews",
+      "public": true
+    },
+    {
+      "id": "reviews",
+      "label": "Reviews",
+      "type": "collection",
+      "description": "Reviews submitted by this reviewer",
+      "collection": "reviews",
+      "link": {
+        "params": {
+          "account_id": "id"
+        }
+      }
+    },
+    {
+      "id": "review_count",
+      "label": "Review count",
+      "type": "integer",
+      "description": "Total number of reviews submitted by this reviewer",
+      "readonly": true,
+      "public": true
+    },
+    {
+      "id": "comments",
+      "label": "Comments",
+      "type": "collection",
+      "description": "Comments submitted by this reviewer",
+      "collection": "reviews:comments",
+      "link": {
+        "params": {
+          "account_id": "id"
+        }
+      }
+    },
+    {
+      "id": "comment_count",
+      "label": "Comment count",
+      "type": "integer",
+      "description": "Total number of comments submitted by this reviewer",
+      "readonly": true,
+      "public": true
+    },
+    {
+      "id": "score",
+      "label": "Reviewer score",
+      "type": "integer",
+      "description": "Sum of reactions to reviews and comments made by other customers",
+      "readonly": true,
+      "public": true
+    },
+    {
+      "id": "reward_total",
+      "label": "Reward total",
+      "type": "currency",
+      "description": "Total amount of rewards earned by the reviewer",
+      "readonly": true,
+      "localized": true
+    }
+  ],
+  "views": [
+    {
+      "id": "list",
+      "tabs": [
+        {
+          "id": "reviewers",
+          "label": "Reviewers",
+          "query": {
+            "$or": [
+              {
+                "review_count": {
+                  "$gt": 0
+                }
+              },
+              {
+                "comment_count": {
+                  "$gt": 0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "fields": [
+        {
+          "id": "review_count",
+          "label": "Reviews"
+        },
+        {
+          "id": "comment_count",
+          "label": "Comments"
+        },
+        {
+          "id": "score"
+        },
+        {
+          "id": "photo"
+        }
+      ]
+    },
+    {
+      "id": "edit",
+      "tabs": [
+        {
+          "id": "reviewer",
+          "label": "Reviewer profile",
+          "fields": [
+            {
+              "type": "field_row",
+              "fields": [
+                {
+                  "id": "reward_total"
+                },
+                {
+                  "id": "review_count"
+                },
+                {
+                  "id": "comment_count"
+                },
+                {
+                  "id": "score"
+                }
+              ]
+            },
+            {
+              "id": "name"
+            },
+            {
+              "id": "photo"
+            },
+            {
+              "id": "about"
+            },
+            {
+              "id": "reviews"
+            },
+            {
+              "id": "comments"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "label": "Approvals",
+  "description": "Automatically approve reviews and comments",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "auto_approve_min_orders",
+      "label": "Min. orders to approve",
+      "type": "number",
+      "digits": 0,
+      "description": "Only approve when the customer has placed this many orders",
+      "placeholder": "0",
+      "admin_span": 1,
+      "conditions": {
+        "approval.enabled": true
+      },
+      "default": null
+    }
+  ]
+}

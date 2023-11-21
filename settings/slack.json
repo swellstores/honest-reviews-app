@@ -1,0 +1,22 @@
+{
+  "label": "Slack notifications",
+  "description": "Send messages to your internal Slack when reviews are created and approved",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "notify_url",
+      "label": "Review notifications URL",
+      "type": "text",
+      "description": "A Slack Incoming Webhook URL to receive review notifications",
+      "placeholder": "https://hooks.slack.com/services/...",
+      "conditions": {
+        "slack.enabled": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "collection": "products",
+  "public": true,
+  "fields": [
+    {
+      "id": "rating",
+      "label": "Review rating",
+      "type": "number",
+      "digits": 1,
+      "description": "Average rating of reviews approved for this product",
+      "readonly": true
+    },
+    {
+      "id": "review_count",
+      "label": "Review count",
+      "type": "integer",
+      "description": "Total number of reviews approved for this product",
+      "readonly": true
+    },
+    {
+      "id": "honest_reviews",
+      "label": "Reviews",
+      "type": "collection",
+      "description": "Reviews submitted for this product",
+      "collection": "reviews",
+      "link": {
+        "params": {
+          "product_id": "id"
+        }
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "list",
+      "tabs": [
+        {
+          "id": "reviewed",
+          "label": "Reviewed",
+          "query": {
+            "review_count": {
+              "$gt": 0
+            }
+          },
+          "fields": [
+            {
+              "id": "rating"
+            },
+            {
+              "id": "review_count"
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "id": "rating",
+          "format": "{{ rating }} {{ rating | default: 5 | pluralize: 'star','stars' }}"
+        },
+        {
+          "id": "review_count",
+          "label": "Reviews"
+        }
+      ]
+    },
+    {
+      "id": "edit",
+      "tabs": [
+        {
+          "id": "reviews",
+          "label": "Reviews",
+          "fields": [
+            {
+              "type": "field_row",
+              "fields": [
+                {
+                  "id": "rating",
+                  "admin_span": 1
+                },
+                {
+                  "id": "review_count",
+                  "admin_span": 1
+                }
+              ]
+            },
+            {
+              "id": "honest_reviews"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

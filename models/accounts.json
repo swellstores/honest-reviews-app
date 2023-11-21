@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "credits": {
+      "fields": {
+        "review_id": {
+          "type": "objectid"
+        },
+        "reward_id": {
+          "type": "objectid"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "label": "Rewards",
+  "fields": {
+    "account_id": {
+      "type": "objectid",
+      "required": true
+    },
+    "account": {
+      "type": "link",
+      "model": "accounts",
+      "key": "account_id"
+    },
+    "review_id": {
+      "type": "objectid",
+      "required": true
+    },
+    "review": {
+      "type": "link",
+      "model": "reviews",
+      "key": "review_id"
+    },
+    "amount": {
+      "type": "currency",
+      "required": true,
+      "immutable": true,
+      "localized": true
+    },
+    "rewarded": {
+      "type": "bool",
+      "default": false
+    }
+  },
+  "events": {
+    "types": [
+      { "id": "created" }
+    ]
+  }
+}

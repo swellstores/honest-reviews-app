@@ -1,0 +1,30 @@
+{
+  "collection": "reviews",
+  "label": "Review approved",
+  "subject": "Let us know what you think of {{ product.name }} {% if settings.rewards.enabled %}and get a special gift{% endif %}",
+  "description": "Ask a customer review their purchase",
+  "method": "email",
+  "contact": "account.email",
+  "event": "approved",
+  "repeat": true,
+  "sample": {
+    "account": {
+      "name": "Jane Doe",
+      "first_name": "Jane",
+      "last_name": "Doe"
+    },
+    "product": {
+      "name": "Product One",
+      "images": [
+        {
+          "file": {
+            "url": "https://cdn.schema.io/default-theme/5f63e175e7eed80c11766c83/886a77f13bc9e09396f7a378edb170af"
+          }
+        }
+      ]
+    },
+    "product_url": "https://example.com/products/product-one",
+    "review_url": "https://example.com/products/product-one#write-review",
+    "reward_amount": 5
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "honest-reviews",
+  "version": "1.0.1",
+  "description": "Example reviews app for Swell",
+  "author": "Swell",
+  "license": "MIT",
+  "devDependencies": {
+    "@swell/app-types": "^1.0.5"
+  }
+}

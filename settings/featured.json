@@ -1,0 +1,24 @@
+{
+  "label": "Featured reviews",
+  "description": "Display featured reviews on home and product pages",
+  "fields": [
+    {
+      "id": "enabled",
+      "label": "Enabled",
+      "type": "toggle",
+      "public": true,
+      "default": true
+    },
+    {
+      "id": "display_count",
+      "label": "Number to display",
+      "type": "integer",
+      "admin_span": 1,
+      "default": 3,
+      "public": true,
+      "conditions": {
+        "featured.enabled": true
+      }
+    }
+  ]
+}
