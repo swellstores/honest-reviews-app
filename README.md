@@ -2,7 +2,7 @@
 
 Honest Reviews is a sample app for Swell.
 
-Swell Apps is currently in closed alpha phase, available to select partners. Read more in the (alpha documentation)[https://www.notion.so/swellcorp/Swell-Apps-4dc8e6e696e14778973a8e5a1bc3575c?pvs=4].
+Swell Apps is currently in closed alpha phase, available to select partners. Read more in the [alpha documentation](https://www.notion.so/swellcorp/Swell-Apps-4dc8e6e696e14778973a8e5a1bc3575c?pvs=4).
 
 
 ## Getting Started
@@ -28,7 +28,7 @@ swell app push
 
 ## Storefront setup
 
-Honest Reviews is bundled with a (Next.js 14)[https://nextjs.org/blog/next-14] app that shows how a frontend can integrate with models, fetch data and interact with app functions.
+Honest Reviews is bundled with a [Next.js 14](https://nextjs.org/blog/next-14) app that shows how a frontend can integrate with models, fetch data and interact with app functions.
 
 1. In the Swell dashboard, navigate to `Developer > API keys` and create a public key with permissions for Honest Reviews. Enter your store ID and public key in `/path/to/honest-reviews-app/storefront/.env.local`.
 
@@ -57,4 +57,4 @@ Contributions are welcome! Visit the [Swell Discord](https://discord.gg/9XcDSwbj
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) file for details.
