@@ -1,6 +1,6 @@
 # Honest Reviews
 
-Honest Reviews is a sample app for Swell.
+Honest Reviews is an example for developing Swell Apps.
 
 Swell Apps is currently in closed alpha phase, available to select partners. Read more in the [alpha documentation](https://www.notion.so/swellcorp/Swell-Apps-4dc8e6e696e14778973a8e5a1bc3575c?pvs=4).
 
@@ -53,7 +53,7 @@ The app isn't ready for production use at this time, but should serve as an exam
 
 ## Contributing
 
-Contributions are welcome! Visit the [Swell Discord](https://discord.gg/9XcDSwbj) channel or [GitHub discussions](https://github.com/orgs/swellstores/discussions/) to ask questions and share ideas.
+Contributions are welcome! Visit the [Swell Discord](https://discord.gg/9XcDSwbj) or [GitHub discussions](https://github.com/orgs/swellstores/discussions/) to get help and share ideas.
 
 ## License
 
