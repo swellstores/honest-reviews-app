@@ -36,6 +36,11 @@ export async function getProductReviewRating(
     },
   });
 
+  if (!result) {
+    console.warn('Unable to aggregate product reviews', query);
+    return { count: 0, rating: 0 };
+  }
+
   return {
     count: result.count || 0,
     rating: result.count ? result.rating_total / result.count : 0,

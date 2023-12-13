@@ -4,7 +4,7 @@ import { autoCommentActions } from './lib/comments';
 export const config: SwellConfig = {
   description: 'Handle review submission features',
   model: {
-    events: ['review.created'],
+    events: ['review.comment.created'],
   },
 };
 
