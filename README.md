@@ -53,7 +53,7 @@ The app isn't ready for production use at this time, but should serve as an exam
 
 ## Contributing
 
-Contributions are welcome! Visit the [Swell Discord](https://discord.gg/9XcDSwbj) or [GitHub discussions](https://github.com/orgs/swellstores/discussions/) to get help and share ideas.
+Contributions are welcome! Visit the [Swell Discord](https://discord.gg/VakSbyjDGZ) or [GitHub discussions](https://github.com/orgs/swellstores/discussions/) to get help and share ideas.
 
 ## License
 
